@@ -2,17 +2,17 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt-nodejs");
 
+
 //Define our model
 const userSchema = new Schema({
     email: {type: String, unique: true, lowercase: true},
     password: String
-}, {
-    usePushEach: true
 });
+
 
 //onsave hook, encrypt password
 //before saving a model, run this function
-userSchema.pre("save", (next) => {
+userSchema.pre("save", function(next){
     //get access to the user model
     const user = this;
 
@@ -30,7 +30,6 @@ userSchema.pre("save", (next) => {
 
             //overwrite plain text password with encrypted password
             user.password = hash;
-            console.log(user.password);
             next();
         });
     });
@@ -45,8 +44,9 @@ userSchema.methods.comparePassword = (candidatePassword, callback) => {
     });
 }
 
+
 //Create the model class
-const ModelClass = mongoose.model("users", userSchema);
+const ModelClass = mongoose.model("user", userSchema);
 
 //Export the model 
 module.exports = ModelClass;

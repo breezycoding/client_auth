@@ -9,13 +9,13 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 //fix for deprecation warning
-mongoose.set('useNewUrlParser', true);
+/* mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
-
+ */
 //DB setup
 //mongoose.connect("mongodb://localhost:auth/auth", { useNewUrlParser: true });
-mongoose.connect("mongodb://localhost:auth/auth");
+mongoose.connect("mongodb://localhost/auth");
 
 
 //App setup
